@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 class Artist
-  attr_reader :name, :genre
+  attr_reader :name, :genre, :list
   @@list = []
 
   def initialize(attributes)
@@ -13,5 +13,8 @@ class Artist
     @@list.push(self)
   end
 
+  def self.list
+    @@list
+  end
 
 end
