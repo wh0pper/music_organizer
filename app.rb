@@ -7,9 +7,10 @@ require('rspec')
 require('pry')
 
 enable :sessions
+artist_list = Artist.list
 
 get('/') do
-  @list = Artist.list
+  @artist_list = Artist.list
   erb(:artist_input)
 end
 
@@ -17,7 +18,8 @@ post('/') do
   artist = params["artist"]
   artist_val = Artist.new({:name => artist})
   artist_val.add_to_list()
-  @list = Artist.list
+  artist_list = Artist.list
+  @artist_list = artist_list
   erb(:artist_input)
 end
 
@@ -27,23 +29,25 @@ post('/clear') do
 end
 
 get('/artist/:artist') do
-  print params
   @album_list = []
   @artist_val = params.fetch(:artist)
   session[:current_artist] = @artist_val
+  this_artist = artist_list.find {|object| object.name == @artist_val}
+  puts this_artist.is_a?(Artist)
+  @album_list = this_artist.albums
   erb(:album_input)
 end
 
-# get('/albums') do
-#   erb(:album_input)
-# end
+
 
 post("/artist/albums") do
-  print session[:current_artist]
   @artist_val = session[:current_artist]
+  this_artist = artist_list.find {|object| object.name == @artist_val}
   album_name = params["album"]
-  album_val = Album.new({:album_name => album})
-  album_val.add_to_list()
-  @album_list = Album.list
+  puts this_artist.is_a?(Artist)
+  this_artist.add_album({:album_name => album_name})
+  # album_val = Album.new({:album_name => album})
+  # album_val.add_to_list()
+  @album_list = this_artist.albums
   erb(:album_input)
 end
