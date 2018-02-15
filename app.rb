@@ -11,6 +11,10 @@ get('/') do
   erb(:artist_input)
 end
 
+get('/artist/:artist') do
+  erb(:album_input)
+end
+
 post('/clear') do
   Artist.clear
   redirect '/'
