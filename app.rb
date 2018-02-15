@@ -6,6 +6,8 @@ require('./lib/album')
 require('rspec')
 require('pry')
 
+enable :sessions
+
 get('/') do
   @list = Artist.list
   erb(:artist_input)
@@ -28,6 +30,7 @@ get('/artist/:artist') do
   print params
   @album_list = []
   @artist_val = params.fetch(:artist)
+  session[:current_artist] = @artist_val
   erb(:album_input)
 end
 
@@ -36,7 +39,8 @@ end
 # end
 
 post("/artist/albums") do
-  print params
+  print session[:current_artist]
+  @artist_val = session[:current_artist]
   album = params["album"]
   album_val = Album.new({:album_name => album})
   album_val.add_to_list()
