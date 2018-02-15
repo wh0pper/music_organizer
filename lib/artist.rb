@@ -20,8 +20,12 @@ class Artist
 
   def add_album(attributes)
     new_album = Album.new(attributes)
-    self.albums.push(new_album)
+    @albums.push(new_album)
     new_album
+  end
+
+  def self.clear
+    @@list.clear
   end
 
 end

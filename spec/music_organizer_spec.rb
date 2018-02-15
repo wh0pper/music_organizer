@@ -19,6 +19,14 @@ describe('Artist') do
       artist.add_to_list
       expect(Artist.list()).to(eq([artist]))
     end
+    it('Adds album array to artist object') do
+      Artist.clear
+      artist = Artist.new({:name => 'Mewithoutyou', :genre => 'rock'})
+      current_album = artist.add_album({:album_name => "AB Life", :year => "2002"})
+      artist.add_to_list
+      list = Artist.list
+      expect(list[0].albums).to(eq([current_album]))
+    end
   end
 
   describe('#add_album') do
