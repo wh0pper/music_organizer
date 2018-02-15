@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <h1>Music Organizer</h1>
+</div>
+
+<form action="/albums" method="post">
+  <div class="form-group">
+    <h2>Input albums</h2>
+    <input name="album" class="form-control" type="text" placeholder= "Enter album"><br>
+    <button type="submit" class="btn">Submit</button>
+  </div>
+  <div id="output">
+    <h2>ALBUMS!</h2><br>
+
+    <% @list.each do |x| %>
+    <!-- <h4><%= x. %></a></h4> -->
+    <% end %>
+
+  </div>
+</form>
