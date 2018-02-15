@@ -46,8 +46,6 @@ post("/artist/albums") do
   album_name = params["album"]
   puts this_artist.is_a?(Artist)
   this_artist.add_album({:album_name => album_name})
-  # album_val = Album.new({:album_name => album})
-  # album_val.add_to_list()
   @album_list = this_artist.albums
   erb(:album_input)
 end

@@ -10,7 +10,7 @@
     <button class="btn btn-primary" id="clear" formaction='/clear'>Clear</button>
   </div>
   <div id="output">
-    <h2>ARTISTS</h2><br>
+    <h2>Artists:</h2><br>
 
     <% @artist_list.each do |x| %>
       <h4><a href="/artist/<%= x.name %>"><%= x.name %></a></h4>
