@@ -2,14 +2,20 @@
   <h1>Music Organizer</h1>
 </div>
 
-<form action="/albums" method="post">
+<form action="/artist/albums" method="post">
   <div class="form-group">
     <h2>Input albums</h2>
     <input name="album" class="form-control" type="text" placeholder= "Enter album"><br>
     <button type="submit" class="btn">Submit</button>
   </div>
   <div id="output">
+    <h1>Artist: <%= @artist_val %></h1>
     <h2>ALBUMS</h2><br>
+
+    <% @album_list.each do |album| %>
+      <h4><%= album.album_name %></h4>
+    <% end %>
+
 
   </div>
 </form>
