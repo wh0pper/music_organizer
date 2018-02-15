@@ -41,7 +41,7 @@ end
 post("/artist/albums") do
   print session[:current_artist]
   @artist_val = session[:current_artist]
-  album = params["album"]
+  album_name = params["album"]
   album_val = Album.new({:album_name => album})
   album_val.add_to_list()
   @album_list = Album.list
